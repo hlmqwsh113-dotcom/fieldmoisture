@@ -1,0 +1,4 @@
+# shell 脚本必须保持 LF，否则 bash 无法执行
+*.sh text eol=lf
+# bat 在 Windows 用 CRLF
+*.bat text eol=crlf

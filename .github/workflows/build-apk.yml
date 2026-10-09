@@ -1,0 +1,26 @@
+# 云端自动打包 APK：push 代码后自动生成安装包，在 Actions 页面下载
+name: Build Android APK
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:   # 允许在 GitHub 网页上手动点 Run 触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build with Buildozer（自动缓存 SDK/NDK，首次约 30-40 分钟）
+        uses: ArtemSBulgakov/buildozer-action@v1
+        with:
+          workdir: .
+          buildozer_version: stable
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fieldmoisture-apk
+          path: bin/*.apk

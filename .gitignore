@@ -1,0 +1,9 @@
+# 编译产物与缓存（云端打包时重新生成，不入库）
+.buildozer/
+bin/
+__pycache__/
+*.pyc
+
+# 本机临时文件
+~$*.xlsx
+preview_*.png
